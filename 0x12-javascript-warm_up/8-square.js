@@ -1,16 +1,20 @@
 #!/usr/bin/node
 
 // Get the first argument passed to the script
-const firstArg = process.argv[2];
+const sizeArg = process.argv[2];
 
 // Convert the argument to an integer using parseInt
-const num = parseInt(firstArg);
+const size = parseInt(sizeArg);
 
 // Check if the conversion resulted in a valid integer
-if (!isNaN(num)) {
-  // Use a loop to print "C is fun" x times
-  for (let i = 0; i < num; i++) {
-    console.log('C is fun');
+if (!isNaN(size)) {
+  // Use a loop to print a square of size x
+  for (let i = 0; i < size; i++) {
+    let row = '';
+    for (let j = 0; j < size; j++) {
+      row += 'X';
+    }
+    console.log(row);
   }
 } else {
   console.log('Missing size');

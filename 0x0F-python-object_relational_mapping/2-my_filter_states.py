@@ -9,22 +9,22 @@ import MySQLdb
 from sys import argv
 
 if __name__ == "__main__":
-    (username, password, database, statename) = (argv[1], argv[2],
-                                                 argv[3], argv[4])
 
     # connect to the database
     connection = MySQLdb.connect(
             host="localhost",
             port=3306,
-            user=username,
-            passwd=password,
-            db=database
+            user=argv[1],
+            passwd=argv[2],
+            db=argv[3]
     )
     # create a cursor to interact with the database
     cursor = connection.cursor()
     # execute the SQL query
-    query = ("SELECT * FROM states WHERE name = '{}'"
-            "ORDER BY states.id ASC").format(statename)
+    query = ("""
+        SELECT * FROM states  WHERE name LIKE BINARY '{}'
+        ORDER BY states.id ASC
+        """.format(argv[4]))
     cursor.execute(query)
     # fetch the results
     results = cursor.fetchall()

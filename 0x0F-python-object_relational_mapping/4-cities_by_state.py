@@ -19,7 +19,13 @@ if __name__ == "__main__":
     # create a cursor to interact with the database
     cursor = connection.cursor()
     # execute the SQL query
-    cursor.execute("SELECT * FROM cities ORDER BY cities.id ASC")
+    query = """
+        SELECT cities.id, cities.name, states.name
+        FROM cities
+        JOIN states ON states.id = cities.state_id
+        ORDER BY cities.id ASC
+    """
+    cursor.execute(query)
     # fetch the results
     results = cursor.fetchall()
     # process the results

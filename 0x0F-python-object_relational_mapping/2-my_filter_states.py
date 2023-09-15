@@ -23,8 +23,9 @@ if __name__ == "__main__":
     # create a cursor to interact with the database
     cursor = connection.cursor()
     # execute the SQL query
-    query = "SELECT * FROM states WHERE name = %s ORDER BY states.id ASC"
-    cursor.execute(query, (statename,))
+    query = ("SELECT * FROM states WHERE name = '{}'"
+            "ORDER BY states.id ASC").format(statename)
+    cursor.execute(query)
     # fetch the results
     results = cursor.fetchall()
     # process the results

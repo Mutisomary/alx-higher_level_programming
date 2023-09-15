@@ -21,8 +21,7 @@ if __name__ == "__main__":
     # create a cursor to interact with the database
     cursor = connection.cursor()
     # execute the query
-    query = "SELECT * FROM states WHERE name LIKE 'N%' ORDER BY states.id ASC"
-    cursor.execute(query)
+    cursor.execute("SELECT * FROM states WHERE name LIKE 'N%' ORDER BY states.id ASC")
     # fecth the results
     results = cursor.fetchall()
     # process the results
